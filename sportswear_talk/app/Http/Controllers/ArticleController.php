@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Unique;
@@ -47,12 +49,13 @@ class ArticleController extends Controller
             'brand' => 'required',
             'style' => 'required',
             'description' => 'required',
-            'rating' => 'required',
+            'rating' => 'required|numeric|max:10|min:1  ',
             'image' => 'image|required',
             'category' => 'required',
+            'tags' => 'required',
         ]);
 
-        Article::create([
+        $article = Article::create([
             'title' => $request->title,
             'brand' => $request->brand,
             'style' => $request->style,
@@ -63,7 +66,16 @@ class ArticleController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect(route('create'))->with('message', "Articolo {{ article(title) }} creato correttamente");
+        $tags = explode(', ', $request->tags);
+
+        foreach($tags as $tag){
+            $newTag = Tag::updateOrCreate([
+                'name' => $tag,
+            ]);
+            $article->tags()->attach($newTag);
+        }
+
+        return redirect(route('create'))->with('message', "Articolo \"{$article->title}\" creato correttamente");
     }
 
     /**
@@ -111,5 +123,12 @@ class ArticleController extends Controller
             return $article->is_accepted == true;
         });
         return view('article.byEditor', compact('editor', 'articles'));
+    }
+
+    public function articleSearch(Request $request){
+        $query = $request->input('query');
+        $articles = Article::search($query)->where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+
+        return view('article.search-index', compact('articles', 'query'));
     }
 }

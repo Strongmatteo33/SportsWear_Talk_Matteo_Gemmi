@@ -4,7 +4,7 @@
 
 
 
-    <div class="container my-5">
+    <!-- <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
 
@@ -51,7 +51,63 @@
             
             
         </div>
-    </div>
+    </div> -->
 
+
+
+
+
+
+
+    <div class="container my-5 ">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-8 mx-auto">
+
+            <form class="p-5 w-50 shadow mx-auto rounded-5" method="POST" action="{{ route('login') }}">
+                @csrf
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <div class="mb-2 container text-center">
+                        <label for="email" class="form-label fw-bold">Username:</label>
+                        <input type="email" name="email" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0 custom-placeholder-color" id="email" placeholder="Inserisci email">
+                </div>
+
+                <div class="mb-2 container text-center">
+                    <label for="password" class="form-label fw-bold">Password:</label>
+                    <input type="password" name="password" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0 custom-placeholder-color" id="password" placeholder="Inserisci password">
+                </div>
+
+                <div class="mb-3 container text-center">
+                    <input type="checkbox" name="remember" class="form-check-input mx-auto" id="remember">
+                    <label class="form-check-label" for="remember">Ricordami</label>
+                </div>
+                <div class="container text-center">
+                    <button type="submit" class="btn btn-primary width-button button-special">Accedi</button>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <div class="text-center text-secondary fst-italic d-inline">
+                        Nuovo utente?        
+                    </div>
+                    <div class="text-center text-secondary fst-italic d-inline">
+                        <a href="{{ route('register') }}" class="text-secondary text-decoration-underline">Registrati</a>
+                     </div>
+                </div>
+
+            </form>
+            
+            
+            
+        </div>
+    </div>  
 
 </x-layout>

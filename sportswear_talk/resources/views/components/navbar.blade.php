@@ -1,7 +1,7 @@
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('homepage') }}">SportsWear</a>
+        <a class="navbar-brand" href="{{ route('homepage') }}"><img width="80" src="/storage/KimberlyNguyen.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +25,13 @@
                 @endauth
             </ul>
 
+            
+            
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+                <form action="{{route('article.search')}}" method="GET" class="d-flex">
+                    <input class="form-control me-2 " type="search" name="query" placeholder="Cosa stai Cercando?" aria-label="Search">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                </form>
                 <li class="nav-item dropdown">
                     @auth   
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

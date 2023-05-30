@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('style');
             $table->longText('description');
-            $table->string('rating');
+            $table->integer('rating');
             $table->string('image');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');

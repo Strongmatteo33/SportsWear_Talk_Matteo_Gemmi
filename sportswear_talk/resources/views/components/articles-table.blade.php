@@ -21,7 +21,6 @@
             @else
                 <a href="{{ route('revisor.undoArticle', compact('article')) }}" class="btn btn-info text-white">Riporta in revisione</a>
             @endif
-
             </td>
         </tr>
         @endforeach

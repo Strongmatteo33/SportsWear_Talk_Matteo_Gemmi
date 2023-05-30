@@ -21,7 +21,16 @@
                   <h5 class="card-title d-inline fw-bold">{{ $article->title }}</h5>
                 </div>
                 <h5 class="card-text">{{ $article->brand}}</h5>
-                <a href="{{ route('article.byCategory', ['category'=>$article->category->id ]) }}" class="small text-muted fst-italic fw-bold text-capitalize"> {{ $article->category->name }} </a>
+                @if($article->category)
+                  <a href="{{ route('article.byCategory', ['category'=>$article->category->id ]) }}" class="small text-muted fst-italic fw-bold text-capitalize"> {{ $article->category->name }} </a>
+                @else
+                  <p class="small text-muted fst-italic fw-bold text-capitalize">Non categorizzato</p>
+                @endif
+                <p class="small fst-italic text-capitalize my-2">
+                  @foreach($article->tags as $tag)
+                    #{{ $tag->name }}
+                  @endforeach
+                </p>
               </div>
               <div class="card-footer text-muted justify-content-between allign-items-center">
               <p>Redatto il {{ $article->created_at->format('d/m/Y') }}</p>

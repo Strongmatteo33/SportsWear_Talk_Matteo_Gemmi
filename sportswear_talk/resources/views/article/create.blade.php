@@ -8,7 +8,7 @@
             {{  session('message') }}
         </div>
     @endif
-    <div class="container my-5">
+    <div class="container my-5 w-50">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
                 <form action="{{route('store')}}" method="POST" class="p-5 shadow" enctype="multipart/form-data">
@@ -25,39 +25,44 @@
                 
                     @csrf
 
-                    <div class="mb-3">
+                    <div class="mb-3 text-center">
                         <h2>Aggiungi un articolo</h2>
                     </div>
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Titolo</label>
-                        <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}">
+                    <div class="mb-3 text-center">
+                        <label for="title" class="form-label fw-bold">Titolo:</label>
+                        <input type="text" name="title" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="title" value="{{ old('title') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="brand" class="form-label">Brand</label>
-                        <input type="text" name="brand" class="form-control" id="brand" value="{{ old('brand') }}">
+                    <div class="mb-3 text-center">
+                        <label for="brand" class="form-label fw-bold">Brand:</label>
+                        <input type="text" name="brand" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="brand" value="{{ old('brand') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" >{{ old('description') }}</textarea>
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="style" class="form-label">Modello:</label>
+                        <input type="text" name="style" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="style" value="{{ old('style ') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="style" class="form-label">Modello</label>
-                        <input type="text" name="style" class="form-control" id="style" value="{{ old('style ') }}">
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="rating" class="form-label">Rating:</label>
+                        <input type="number" min="0" max="10" name="rating" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="rating" value="{{ old('rating') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating</label>
-                        <input type="number" min="0" max="10" name="rating" class="form-control" id="rating" value="{{ old('rating') }}">
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="category" class="form-label">Categoria:</label>
+                        <input type="text" name="category" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="category " value="{{ old('category') }}" >
                     </div>
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Categoria</label>
-                        <input type="text" name="category" class="form-control" id="category " value="{{ old('category') }}" >
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="tags" class="form-label">Tags:</label>
+                        <input type="text" name="tags" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0 custom-placeholder" id="tags " value="{{ old('tags') }}" placeholder="Dividi ogni tag con una virgola">
                     </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Immagine</label>
-                        <input type="file" name="image" class="form-control" id="image">
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="image" class="form-label">Immagine:</label>
+                        <input type="file" name="image" class="form-control custom-width mx-auto text-center rounded-5 custom-gray border-0" id="image">
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Inserisci l'articolo</button>
+                    <div class="mb-3 text-center fw-bold">
+                        <label for="description" class="form-label">Descrizione:</label>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control mx-auto text-center rounded-5 custom-gray border-0" >{{ old('description') }}</textarea>
+                    </div>
+                    <div class="container text-center my-5">
+                        <button type="submit" class="btn btn-primary width-button button-special">Inserisci l'articolo</button>
+                    </div>
                 </form>
             </div>
         </div>
